@@ -1,0 +1,12 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "outDir": "lib/ts",
+        "declaration": true,
+        "declarationMap": true,
+        "isolatedModules": false,
+        "noEmit": false,
+        "allowJs": false,
+        "emitDeclarationOnly": true
+    },
+}

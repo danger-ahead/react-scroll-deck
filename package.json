@@ -1,0 +1,84 @@
+{
+  "name": "react-scroll-deck",
+  "version": "1.0.1",
+  "description": "A versatile npm package for creating horizontally scrolling cards with intuitive navigation. Features include hover-based buttons for easy scrolling, two-finger trackpad scrolling support, and a mobile-friendly customizability. Perfect for showcasing a collection of items in an engaging and user-friendly way.",
+  "scripts": {
+    "start": "parcel src/index.html",
+    "changelog": "auto-changelog --ignore-commit-pattern=\"(Merge pull request|Merge branch|Updating changelog|Prepare for publishing)\" --breaking-pattern \"BREAKING CHANGE:\"",
+    "format": "prettier \"**/*.{js,ts,tsx,json}\"",
+    "format:check": "npm run format --check",
+    "format:write": "npm run format --write",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "build": "npm run lib:build",
+    "lib:build": "npm run lib:build-js && npm run lib:build-styles && npm run lib:build-types",
+    "lib:build-js": "babel ./src -d lib/js --ignore './src/__tests__' --extensions .ts,.tsx --config-file ./babel.config.json",
+    "lib:build-styles": "mkdir lib/styles && cp ./src/styles/* lib/styles/",
+    "lib:build-types": "tsc -p tsconfig.types.json",
+    "lib:pre-publish": "npm version patch && git push origin master",
+    "lib:publish": "npm publish && git push --tags",
+    "lib:post-publish": "npm run changelog && npm run update-codesandbox && git add . && git commit -m 'Updating changelog and codesandbox' && git push origin master",
+    "lib:build-and-publish": "npm run lib:build && npm run lib:pre-publish && npm run lib:publish && npm run lib:post-publish",
+    "website:build": "parcel build ./src/index.html --dist-dir temp/website --public-url .",
+    "website:deploy": "gh-pages -d temp/website",
+    "prepublish": "rm -rf ./dist && git pull origin master && npm run build",
+    "publish": "npm version patch && npm publish && git push --tags",
+    "postpublish": "npm run changelog && git add . && git commit -S -m 'Updating changelog and codesandbox' && git push origin master"
+  },
+  "files": [
+    "dist/index.js",
+    "dist/index.d.ts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danger-ahead/react-scroll-deck.git"
+  },
+  "keywords": [
+    "scrolling",
+    "cards",
+    "hover",
+    "navigation",
+    "mobile-friendly",
+    "react",
+    "carousel",
+    "scroll",
+    "deck",
+    "slider",
+    "responsive",
+    "swipe",
+    "react-component",
+    "typescript"
+  ],
+  "author": {
+    "name": "Shourya Shikhar",
+    "url": "https://shourya.floatingpoint.co.in/"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danger-ahead/react-scroll-deck/issues"
+  },
+  "homepage": "https://github.com/danger-ahead/react-scroll-deck#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.22.9",
+    "@babel/core": "^7.22.9",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/preset-env": "^7.22.9",
+    "@babel/preset-react": "^7.22.5",
+    "@babel/preset-typescript": "^7.22.5",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "auto-changelog": "^2.4.0",
+    "babel-loader": "^9.1.3",
+    "gh-pages": "^5.0.0",
+    "parcel": "^2.9.3",
+    "prettier": "3.0.0",
+    "process": "^0.11.10",
+    "react": ">=18.2.0",
+    "react-dom": ">=18.2.0",
+    "typescript": "^5.1.6"
+  },
+  "peerDependencies": {
+    "react": ">=18.2.0",
+    "react-dom": ">=18.2.0"
+  }
+}
